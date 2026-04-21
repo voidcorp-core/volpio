@@ -57,7 +57,8 @@
   },
   "cta": {
     "title": "Let's build intelligent systems together.",
-    "button": "Get in Touch"
+    "button": "Get in Touch",
+    "emailCopied": "Email copied to clipboard"
   },
   "footer": {
     "copyright": "© 2025 Volpio",

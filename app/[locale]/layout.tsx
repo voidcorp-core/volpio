@@ -4,6 +4,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation"
 
 import VolpioLogotype from "@/assets/Volpio_logotype.svg"
+import { Toaster } from "@/components/ui/sonner"
 import { locales } from "@/i18n/request"
 
 import "styles/tailwind.css"
@@ -64,7 +65,10 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <Toaster />
+        </NextIntlClientProvider>
       </body>
     </html>
   )
