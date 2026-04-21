@@ -2,8 +2,10 @@ import type { Metadata } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
+import Script from "next/script"
 
 import VolpioLogotype from "@/assets/Volpio_logotype.svg"
+import { Toaster } from "@/components/ui/sonner"
 import { locales } from "@/i18n/request"
 
 import "styles/tailwind.css"
@@ -64,7 +66,15 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <Script
+          src="https://umami.voidcorp.io/u.js"
+          data-website-id="a43fb404-4a93-4a3b-8523-b493c1e7094c"
+          strategy="afterInteractive"
+        />
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <Toaster />
+        </NextIntlClientProvider>
       </body>
     </html>
   )

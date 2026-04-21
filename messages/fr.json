@@ -57,7 +57,8 @@
   },
   "cta": {
     "title": "Construisons ensemble des systèmes intelligents.",
-    "button": "Prendre Contact"
+    "button": "Prendre Contact",
+    "emailCopied": "Email copié dans le presse-papiers"
   },
   "footer": {
     "copyright": "© 2025 Volpio",

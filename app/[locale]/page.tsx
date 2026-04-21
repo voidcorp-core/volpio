@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "motion/react"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import React, { useEffect } from "react"
+import { toast } from "sonner"
 
 import { AnimatedGradientBg } from "@/components/AnimatedGradientBg"
 import { CapabilityCard } from "@/components/CapabilityCard"
@@ -15,11 +16,22 @@ import { Button } from "@/components/ui/button"
 import { VolpioLogo } from "@/components/VolpioLogo"
 import VolpioLogoHorWhite from "@/assets/Volpio_logo-hor-white.svg"
 
+const CONTACT_EMAIL = "florent.pellegrin@volpio.com"
+
 export default function App() {
   const t = useTranslations()
   const { scrollYProgress } = useScroll()
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9])
+
+  const handleContactClick = () => {
+    if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+      navigator.clipboard
+        .writeText(CONTACT_EMAIL)
+        .then(() => toast.success(t("cta.emailCopied")))
+        .catch(() => {})
+    }
+  }
 
   useEffect(() => {
     // Add Google Fonts
@@ -331,7 +343,7 @@ export default function App() {
                 className="rounded-full border-0 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 px-8 py-6 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,107,53,0.5)]"
                 style={{ fontSize: "1.125rem" }}
               >
-                <a href="mailto:florent.pellegrin@volpio.com">
+                <a href={`mailto:${CONTACT_EMAIL}`} onClick={handleContactClick}>
                   {t("cta.button")}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
